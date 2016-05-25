@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    dotenv (2.1.1)
     line-bot-api (0.1.6)
       rack (>= 1.6)
     rack (1.6.4)
@@ -17,7 +16,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv
   line-bot-api
   sinatra (~> 1.4.4)
 
