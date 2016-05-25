@@ -10,7 +10,7 @@ def client
 end
 
 get '/' do
-  "Hello, chocoboty"
+  ENV["LINE_CHANNEL_ID"]
 end
 
 post '/callback' do
