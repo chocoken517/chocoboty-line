@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'line/bot'
-require 'docomo'
-require 'sticker'
+require './docomo'
+require './sticker'
 
 def client
   @client ||= Line::Bot::Client.new { |config|
