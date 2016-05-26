@@ -30,8 +30,8 @@ post '/callback' do
     when Line::Bot::Operation::AddedAsFriend
       client.send_sticker(to_mid: message.from_mid, stkpkgid: 2, stkid: 144, stkver: 100)
     when Line::Bot::Message::Image
-      client.send_text(to_mid: message.from_mid, text: message.content[:originalContentUrl])
-      client.send_image(to_mid: message.from_mid, image_url: message.content[:originalContentUrl], preview_url: message.content[:previewImageUrl])
+      client.send_text(to_mid: message.from_mid, text: message.content[:image_url])
+      client.send_image(to_mid: message.from_mid, image_url: message.content[:image_url], preview_url: message.content[:preview_url])
     when Line::Bot::Message::Video
       client.send_text(to_mid: message.from_mid, text: '動画送られても、、、')
     end
