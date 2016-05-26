@@ -25,17 +25,22 @@ post '/callback' do
     case message.content
     # Line::Bot::Receive::Message
     when Line::Bot::Message::Text
-      client.send_text(to_mid: message.from_mid, text: message.content[:text])
+      client.send_text(to_mid: message.from_mid, text: Docomo.new(message.content[:text]).reply)
     # Line::Bot::Receive::Operation
     when Line::Bot::Operation::AddedAsFriend
       client.send_sticker(to_mid: message.from_mid, stkpkgid: 2, stkid: 144, stkver: 100)
       client.send_text(to_mid: message.from_mid, text: 'よろしくー')
     when Line::Bot::Message::Image
-      client.send_text(to_mid: message.from_mid, text: '画像送られても...わかないよー')
       client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 16, stkver: 100)
+      client.send_text(to_mid: message.from_mid, text: '画像送られても...わかないよー')
     when Line::Bot::Message::Video
-      client.send_text(to_mid: message.from_mid, text: '動画送られても...わかないよー')
       client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 9, stkver: 100)
+      client.send_text(to_mid: message.from_mid, text: '動画送られても...わかないよー')
+    when Line::Bot::Message::Sticker
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 9, stkver: 100)
+      client.send_text(to_mid: message.from_mid, text: 'スタンプ返し！')
+    else
+      client.send_sticker(to_mid: message.from_mid, { stkpkgid: 1, stkid: 9, stkver: 100 } )
     end
   }
 
