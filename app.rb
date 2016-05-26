@@ -37,9 +37,18 @@ post '/callback' do
         stkid: 144,
         stkver: 100
       )
+    when Line::Bot::Message::Image
+      client.send_text(
+        to_mid: message.from_mid,
+        text: '画像送られても、、、',
+      )
+    when Line::Bot::Message::Video
+      client.send_text(
+        to_mid: message.from_mid,
+        text: '動画送られても、、、',
+      )
     end
   }
 
   "OK"
 end
-
