@@ -29,12 +29,13 @@ post '/callback' do
     # Line::Bot::Receive::Operation
     when Line::Bot::Operation::AddedAsFriend
       client.send_sticker(to_mid: message.from_mid, stkpkgid: 2, stkid: 144, stkver: 100)
+      client.send_text(to_mid: message.from_mid, text: 'よろしくー')
     when Line::Bot::Message::Image
       client.send_text(to_mid: message.from_mid, text: '画像送られても...わかないよー')
-      client.send_sticker(to_mid: message.from_mid, stkpkgid: 2, stkid: 144, stkver: 100)
-      client.send_sticker(to_mid: message.from_mid, stkpkgid: 16, stkid: 1, stkver: 100)
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 16, stkver: 100)
     when Line::Bot::Message::Video
-      client.send_text(to_mid: message.from_mid, text: '動画送られても、、、')
+      client.send_text(to_mid: message.from_mid, text: '動画送られても...わかないよー')
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 9, stkver: 100)
     end
   }
 
