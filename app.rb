@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'line/bot'
+require 'docomo'
+require 'sticker'
 
 def client
   @client ||= Line::Bot::Client.new { |config|
@@ -22,6 +24,7 @@ post '/callback' do
   receive_request = Line::Bot::Receive::Request.new(request.env)
 
   receive_request.data.each { |message|
+    sticker = Sticker.new.pickup
     case message.content
     # Line::Bot::Receive::Message
     when Line::Bot::Message::Text
@@ -31,16 +34,16 @@ post '/callback' do
       client.send_sticker(to_mid: message.from_mid, stkpkgid: 2, stkid: 144, stkver: 100)
       client.send_text(to_mid: message.from_mid, text: 'よろしくー')
     when Line::Bot::Message::Image
-      client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 16, stkver: 100)
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: sticker[:stkpkgid], stkid: sticker[:stkid], stkver: sticker[:stkver])
       client.send_text(to_mid: message.from_mid, text: '画像送られても...わかないよー')
     when Line::Bot::Message::Video
-      client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 9, stkver: 100)
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: sticker[:stkpkgid], stkid: sticker[:stkid], stkver: sticker[:stkver])
       client.send_text(to_mid: message.from_mid, text: '動画送られても...わかないよー')
     when Line::Bot::Message::Sticker
-      client.send_sticker(to_mid: message.from_mid, stkpkgid: 1, stkid: 9, stkver: 100)
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: sticker[:stkpkgid], stkid: sticker[:stkid], stkver: sticker[:stkver])
       client.send_text(to_mid: message.from_mid, text: 'スタンプ返し！')
     else
-      client.send_sticker(to_mid: message.from_mid, { stkpkgid: 1, stkid: 9, stkver: 100 } )
+      client.send_sticker(to_mid: message.from_mid, stkpkgid: sticker[:stkpkgid], stkid: sticker[:stkid], stkver: sticker[:stkver])
     end
   }
 
