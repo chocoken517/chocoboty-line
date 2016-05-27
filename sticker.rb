@@ -34,7 +34,7 @@ class Sticker
     ]
   end
 
-  def pickup
+  def lottery
     @stickers.sample
   end
 end

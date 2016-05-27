@@ -24,7 +24,7 @@ post '/callback' do
   receive_request = Line::Bot::Receive::Request.new(request.env)
 
   receive_request.data.each { |message|
-    sticker = Sticker.new.pickup
+    sticker = Sticker.new.lottery
     case message.content
     # Line::Bot::Receive::Message
     when Line::Bot::Message::Text
