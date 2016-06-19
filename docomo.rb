@@ -33,7 +33,7 @@ class Docomo
   end
 
   def answers
-    text = @response.body['message']['textForDisplay']
+    text = @response.body['message']['textForDisplay'] + "\n"
     @response.body['answers'].each do |value|
       text << value['rank'] + "位\n"
       text << value['answerText'] + "\n"
