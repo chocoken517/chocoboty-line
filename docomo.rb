@@ -35,10 +35,10 @@ class Docomo
   def answers
     text = @response.body['message']['textForDisplay']
     @response.body['answers'].each do |value|
-      text << value['rank'] + '位   '
-      text << value['answerText'] + '   '
-      text << value['linkText'] + '   '
-      text << value['linkUrl'] + '   '
+      text << value['rank'] + "位\n"
+      text << value['answerText'] + "\n"
+      text << value['linkText'] + "\n"
+      text << value['linkUrl'] + "\n"
     end
     text
   end
